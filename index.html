@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css">
+  <link rel="stylesheet" href="custom.css">
+  <title>Ingresos- Egresos</title>
+</head>
+
+<body>
+
+  <!-- contenedor principal de toda la aplicación de ingresos egresos-->
+  
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12 offset-md-1 col-md-10">
+        <div class="container">
+          <!-- Fila para la parte superior donde se resume todo el presupuesto -->
+          <div class="row">
+            <div class="col-12 text-center bg-dark">
+              <h4 class="text-light mt-3">Presupuesto de</h4>
+              <h4 class="text-light pb-2" id="fecha"></h4>
+              <h2 class="text-light pb-2" id="balance">$0.00</h2>
+
+              <button type="button" class=" btn btn-light" style="width: 200px;">Ingresos: $<span id="ingresos-totales">0.00</span></button><br>
+              <button type="button" class="btn btn-light mt-2" style="width: 200px;">Egresos: $<span id="egresos-totales">0.00</span></button>
+              <p class="text-white mt-3">Procentaje de gastos: <span id="porcentaje-gastos" class="font-weight-bold">0%</span></p>
+            </div>
+          </div>
+
+          <!-- Contenedor de la alerta de errores-->
+          <div class="row d-flex justify-content-center">
+              <div class="alert alert-dismissible alert-danger d-none" id="errores">
+                <button type="button" class="close" data-dismiss="alert"">&times;</button>
+              </div>
+          </div>
+
+          <!-- Fila para las transacciones y el detalle de ingresos y egresos-->
+          <div class="row pt-4 bg-light">
+            <div class="col-12 col-sm-6 text-center">
+              <p class="text-info"><span class="badge badge-info p-1">+</span> Transacción</p>
+
+              <!-- Formulario de ingresos y egresos -->
+              <form class="pb-2" id="formulario-transaccion" style="max-width: 300px; margin: auto;" >
+                <select name="tipo-transaccion" id="tipo-transaccion" class="form-control m-2">
+                  <option value="" disabled selected>Ingreso | Egreso</option>
+                  <option value="ingreso">Ingreso</option>
+                  <option value="egreso">Egreso</option>
+                </select>
+                <input type="text" placeholder="Descripción" class="form-control m-2" id="descripcion" name="descripcion" required>
+                <input type="text" placeholder="Monto" class="form-control m-2" id="monto" name="monto" pattern="(\d{0,4})(\.\d{2})?" required>
+              </form>
+              <button class="btn btn-primary mb-4" id="agregar-transaccion">Agregar</button>
+            </div>
+
+            <!-- Contenedor del detalle de ingresos y egresos -->
+            <div class="col-12 col-sm-6 text-center">
+              <ul class="nav nav-tabs">
+                <li class="nav-item mx-0" id="nav-item-a">
+                  <a class="nav-link active text-info" data-toggle="tab" href="#ingresos-resumen" id="nav-ingresos">Ingresos</a>
+                </li>
+                <li class="nav-item mx-0" id="nav-item-b">
+                  <a class="nav-link" data-toggle="tab" href="#egresos-resumen" id="nav-egresos">Egresos</a>
+                </li>
+              </ul>
+              <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active pt-4 pb-4" id="resumen-ingresos"></div>
+                <div class="tab-pane pt-4 pb-4" id="resumen-egresos"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <script src="presupuesto.js"></script>
+
+</body>
+
+</html>
